@@ -141,7 +141,7 @@ class EditEphemeralMessageText:
                 force_large_media=link_preview_options.prefer_large_media,
                 force_small_media=link_preview_options.prefer_small_media,
                 optional=True
-            ) if link_preview_options is not None and link_preview_options.url else None,
+            ) if link_preview_options is not None and link_preview_options.url and not link_preview_options.is_disabled else None,
             reply_markup=reply_markup,
             welcome=welcome,
         )

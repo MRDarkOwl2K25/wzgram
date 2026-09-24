@@ -140,7 +140,7 @@ class EditMessageText:
                     force_large_media=link_preview_options.prefer_large_media,
                     force_small_media=link_preview_options.prefer_small_media,
                     optional=True
-                ) if link_preview_options is not None and link_preview_options.url else None,
+                ) if link_preview_options is not None and link_preview_options.url and not no_webpage else None,
                 reply_markup=await utils.write_edit_reply_markup(self, reply_markup=reply_markup),
                 **text_params
             ),
