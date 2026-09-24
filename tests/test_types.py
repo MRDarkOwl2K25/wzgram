@@ -1897,3 +1897,20 @@ async def test_a_media_block_inside_a_list_item_still_finds_its_document() -> No
 
     assert parsed.items[0].blocks[0].document.file_name == "a.pdf"
 
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize(
+    "ids",
+    [
+        {"foursquare_id": "x"},
+        {"foursquare_type": "x"},
+        {"google_place_id": "x"},
+        {"google_place_type": "x"},
+    ],
+)
+async def test_a_venue_with_half_an_identifier_pair_still_serializes(ids) -> None:
+    media = await types.InputMediaVenue(
+        latitude=1.0, longitude=2.0, title="t", address="a", **ids
+    ).write()
+
+    media.write()
